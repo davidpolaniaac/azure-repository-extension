@@ -1,0 +1,37 @@
+{
+    "manifestVersion": 1,
+    "id": "repository-manager",
+    "version": "1.0.3",
+    "name": "Repository manager",
+    "description": "the repository manager, which allows CRUD operations for certain project groups",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "targets": [{
+        "id": "Microsoft.VisualStudio.Services"
+    }],
+    "scopes": [
+        "vso.code_full",
+        "vso.memberentitlementmanagement_write",
+        "vso.extension.data_write",
+        "vso.identity_manage",
+        "vso.security_manage"
+    ],
+    "icons": {
+        "default": "logo.png"
+    },
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "files": [{
+            "path": "static",
+            "addressable": true
+        },
+        {
+            "path": "dist",
+            "addressable": true
+        }
+    ]
+}

@@ -1,0 +1,91 @@
+{
+    "name": "azure-devops-repository-manager",
+    "version": "1.0.0",
+    "description": "Azure DevOps repository manager extension",
+    "keywords": [
+        "extensions",
+        "Azure DevOps",
+        "Visual Studio Team Services"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/davidpolaniaac/azure-repository-extension.git"
+    },
+    "scripts": {
+        "clean": "rimraf ./dist ./out",
+        "compile": "npm run clean && webpack --mode production",
+        "build": "npm run compile",
+        "start": "webpack --mode production",
+        "postbuild": "npm run package-extension -- --output-path dist --rev-version",
+        "package-extension": "tfx extension create --manifest-globs azure-devops-extension.json src/extensions/**/*.json --overrides-file config/release.json",
+        "publish-extension": "tfx extension publish --manifest-globs azure-devops-extension.json src/extensions/**/*.json --overrides-file config/release.json",
+        "build:dev": "npm run compile:dev && npm run package:dev",
+        "compile:dev": "npm run clean && webpack --mode development",
+        "package:dev": "npm run compile:dev && tfx extension create --manifest-globs azure-devops-extension.json src/extensions/**/*.json --overrides-file config/dev.json --output-path out --rev-version",
+        "publish:dev": "npm run compile:dev && tfx extension publish --manifest-globs azure-devops-extension.json src/extensions/**/*.json --overrides-file config/dev.json --output-path out",
+        "start:dev": "webpack-dev-server --mode development"
+    },
+    "babel": {
+        "presets": [
+            "react-app"
+        ]
+    },
+    "dependencies": {
+        "azure-devops-extension-api": "^1.150.2",
+        "azure-devops-extension-sdk": "^2.0.7",
+        "azure-devops-ui": "~1.150.0",
+        "md5": "^2.2.1",
+        "prop-types": "^15.6.2",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "react-redux": "^5.0.7",
+        "redux": "^4.0.0",
+        "redux-form": "^7.4.2",
+        "redux-form-validators": "^2.7.5",
+        "redux-recompose": "^2.1.1",
+        "redux-thunk": "^2.3.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.3",
+        "@babel/plugin-proposal-class-properties": "^7.4.0",
+        "@babel/preset-env": "^7.4.3",
+        "@babel/preset-react": "^7.0.0",
+        "@svgr/webpack": "2.4.1",
+        "babel-core": "7.0.0-bridge.0",
+        "babel-eslint": "9.0.0",
+        "babel-jest": "23.6.0",
+        "babel-loader": "^8.0.5",
+        "babel-plugin-module-resolver": "^3.1.3",
+        "babel-plugin-named-asset-import": "^0.2.2",
+        "babel-preset-react-app": "^5.0.2",
+        "babel-runtime": "6.26.0",
+        "base64-inline-loader": "^1.1.1",
+        "copy-webpack-plugin": "^4.5.4",
+        "css-loader": "~1.0.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-config-react-app": "^3.0.3",
+        "eslint-loader": "^2.1.2",
+        "eslint-plugin-flowtype": "2.50.1",
+        "eslint-plugin-import": "2.14.0",
+        "eslint-plugin-jsx-a11y": "6.1.1",
+        "eslint-plugin-react": "7.11.1",
+        "file-loader": "~2.0.0",
+        "node-sass": "^4.11.0",
+        "react-hot-loader": "^4.3.4",
+        "redux-devtools": "^3.5.0",
+        "rimraf": "~2.6.2",
+        "sass-loader": "~7.1.0",
+        "style-loader": "~0.23.1",
+        "tfx-cli": "^0.6.3",
+        "webpack": "^4.22.0",
+        "webpack-cli": "^3.3.0",
+        "webpack-dev-server": "^3.8.0",
+        "webpack-manifest-plugin": "2.0.4",
+        "workbox-webpack-plugin": "3.6.2"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    }
+}

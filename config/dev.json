@@ -1,0 +1,6 @@
+{
+    "id": "repository-manager",
+    "public": false,
+    "publisher": "dpolania",
+    "baseUri": "https://localhost:3000"
+}
