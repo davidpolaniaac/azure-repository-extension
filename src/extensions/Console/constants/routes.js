@@ -1,6 +1,4 @@
 import { t } from 'i18next';
-
-import DefaultLayout from '../app/components/DefaultLayout';
 import Repository from '../app/screens/Console/screens/Repository';
 
 export const ROUTE_NAMES = {
@@ -12,7 +10,7 @@ export const ROUTE_NAMES = {
 };
 
 export const PUBLIC_ROUTES = [
-  { path: '/', component: DefaultLayout },
+  { path: '/', component: Repository },
 ];
 
 export const CONSOLE_ROUTES = {

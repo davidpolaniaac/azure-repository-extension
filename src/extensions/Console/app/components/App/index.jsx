@@ -15,9 +15,7 @@ class App extends React.Component {
       <BrowserRouter>
         <ScrollToTop>
           <ConnectedRouter history={history}>
-            <main>
-              <Router pathname={pathname} />
-            </main>
+            <Router pathname={pathname} />
           </ConnectedRouter>
         </ScrollToTop>
       </BrowserRouter>

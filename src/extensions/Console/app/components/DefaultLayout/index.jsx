@@ -4,7 +4,6 @@ import { Surface } from 'azure-devops-ui/Surface';
 import withLoading from '../WithLoading';
 import { ROUTE_NAMES, ROUTES } from '../../../constants/routes';
 import Error404 from '../../screens/Errors/Error404';
-import DefaultPage from '../DefaultPage';
 
 class DefaultLayout extends React.Component {
   renderReposityRoutes = () => ROUTES[ROUTE_NAMES.CONSOLE].routes.map(this.renderRoute);
@@ -22,13 +21,10 @@ class DefaultLayout extends React.Component {
     return (
       <>
         <Surface background={1}>
-          <div className="container__wrap">
-            <Switch>
-              {this.renderReposityRoutes()}
-              <Route path="/" render={() => <DefaultPage />} />
-              <Route component={Error404} />
-            </Switch>
-          </div>
+          <Switch>
+            {this.renderReposityRoutes()}
+            <Route component={Error404} />
+          </Switch>
         </Surface>
     </>
     );
