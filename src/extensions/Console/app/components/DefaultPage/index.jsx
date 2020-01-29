@@ -2,25 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class App extends React.Component {
+class DefaultPage extends React.Component {
   render() {
     return (
       <>
-        <h1>Hello, worlddd!</h1>
+        <h1>Hello, world DefaultPage!</h1>
       </>
     );
   }
 }
-
-App.propTypes = {
+DefaultPage.propTypes = {
 };
-
 const mapStateToProps = state => ({
-
 });
-
 const mapDispatchToProps = dispatch => ({
-
 });
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultPage);

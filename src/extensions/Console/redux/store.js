@@ -2,18 +2,22 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 import { fetchMiddleware } from 'redux-recompose';
 import ReduxThunk from 'redux-thunk';
+import { createBrowserHistory } from 'history';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 
+
+export const history = createBrowserHistory();
 
 const reducers = {
-    form: reduxFormReducer,
+  form: reduxFormReducer,
 };
 
 const appReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const store = createStore(
-    appReducer,
-    composeEnhancers(applyMiddleware(ReduxThunk, fetchMiddleware)),
+  connectRouter(history)(appReducer),
+  composeEnhancers(applyMiddleware(routerMiddleware(history), ReduxThunk, fetchMiddleware)),
 );
 
 export default store;

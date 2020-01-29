@@ -2,8 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as SDK from 'azure-devops-extension-sdk';
+import './config/i18n';
 import store from './redux/store';
-import App from './app/App';
+import App from './app/components/App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 
