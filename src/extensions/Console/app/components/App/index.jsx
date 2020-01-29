@@ -14,9 +14,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <ScrollToTop>
-          <ConnectedRouter history={history}>
-            <Router pathname={pathname} />
-          </ConnectedRouter>
+          <div className="flex-grow">
+            <ConnectedRouter history={history}>
+              <Router pathname={pathname} />
+            </ConnectedRouter>
+          </div>
         </ScrollToTop>
       </BrowserRouter>
     );
