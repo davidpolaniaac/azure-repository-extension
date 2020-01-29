@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Surface } from 'azure-devops-ui/Surface';
 import withLoading from '../WithLoading';
 import { ROUTE_NAMES, ROUTES } from '../../../constants/routes';
 import Error404 from '../../screens/Errors/Error404';
@@ -20,13 +21,15 @@ class DefaultLayout extends React.Component {
   render() {
     return (
       <>
-        <div className="container__wrap">
-          <Switch>
-            {this.renderReposityRoutes()}
-            <Route path="/" render={() => <DefaultPage />} />
-            <Route component={Error404} />
-          </Switch>
-        </div>
+        <Surface background={1}>
+          <div className="container__wrap">
+            <Switch>
+              {this.renderReposityRoutes()}
+              <Route path="/" render={() => <DefaultPage />} />
+              <Route component={Error404} />
+            </Switch>
+          </div>
+        </Surface>
     </>
     );
   }
