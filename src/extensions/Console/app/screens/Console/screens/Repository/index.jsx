@@ -6,14 +6,30 @@ import { Surface } from 'azure-devops-ui/Surface';
 import { Header, TitleSize } from 'azure-devops-ui/Header';
 import { Page } from 'azure-devops-ui/Page';
 import { Card } from 'azure-devops-ui/Card';
-import { Table } from 'azure-devops-ui/Table';
+import { Table, ColumnSorting, sortItems } from 'azure-devops-ui/Table';
 import { ArrayItemProvider } from 'azure-devops-ui/Utilities/Provider';
 import { Tab, TabBar, TabSize } from 'azure-devops-ui/Tabs';
+import { FilterBar } from 'azure-devops-ui/FilterBar';
+import { KeywordFilterBarItem } from 'azure-devops-ui/TextFilterBarItem';
+import { Filter, FILTER_CHANGE_EVENT, FilterOperatorType } from 'azure-devops-ui/Utilities/Filter';
 import { columns } from './constants';
 import { actionCreators as repositoriesActions } from '../../../../../redux/repositories/actions';
 
-
 class Repository extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.filter = new Filter();
+    this.filter.setFilterItemState('listMulti', {
+      value: [],
+      operator: FilterOperatorType.and,
+    });
+    this.filter.subscribe(() => {
+      this.currentState.value = JSON.stringify(this.filter.getState(), null, 4);
+    }, FILTER_CHANGE_EVENT);
+  }
+
+
   componentWillMount() {
     const { getRepositories } = this.props;
     getRepositories();
@@ -23,7 +39,7 @@ class Repository extends React.Component {
     return [
       {
         id: 'panel',
-        text: 'Panel',
+        text: 'Create',
         onActivate: () => { },
         iconProps: {
           iconName: 'Add',
@@ -35,22 +51,16 @@ class Repository extends React.Component {
       },
       {
         id: 'messageDialog',
-        text: 'Message',
+        text: 'Security',
+        important: false,
         onActivate: () => { },
         tooltipProps: {
           text: 'Open a simple message dialog',
         },
       },
-      {
-        id: 'customDialog',
-        text: 'Custom Dialog',
-        onActivate: () => { },
-        tooltipProps: {
-          text: 'Open a dialog with custom extension content',
-        },
-      },
     ];
   }
+
 
   render() {
     const { repositories } = this.props;
@@ -62,8 +72,12 @@ class Repository extends React.Component {
           commandBarItems={this.getCommandBarItems()}
           description="description"
         />
-
         <div className="page-content page-content-top">
+
+          <FilterBar filter={this.filter}>
+            <KeywordFilterBarItem filterItemKey="Placeholder" />
+          </FilterBar>
+
           <Card
             className="bolt-card-no-vertical-padding"
             contentProps={{ contentPadding: false }}

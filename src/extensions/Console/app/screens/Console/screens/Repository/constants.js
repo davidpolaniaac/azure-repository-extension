@@ -6,6 +6,10 @@ export const columns = [{
         id: 'reposiotry',
         name: 'Repository',
         width: new ObservableValue(-33),
+        sortProps: {
+            ariaLabelAscending: 'Sorted A to Z',
+            ariaLabelDescending: 'Sorted Z to A',
+        },
         renderCell,
     },
     {

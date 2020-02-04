@@ -1,6 +1,8 @@
 import React from 'react';
 import { TwoLineTableCell } from 'azure-devops-ui/Table';
 
+import { Pill, PillSize, PillVariant } from 'azure-devops-ui/Pill';
+
 export const renderCell = (
   rowIndex,
   columnIndex,
@@ -14,9 +16,13 @@ export const renderCell = (
     tableColumn={tableColumn}
     line1={<span className="fontSizeM text-ellipsis">{tableItem.name}</span>}
     line2={
-      <span className="fontSize secondary-text flex-center text-ellipsis">
+      <Pill
+        size={PillSize.compact}
+        variant={PillVariant.colored}
+        onClick={() => alert(tableItem.webUrl)}
+      >
         {tableItem.webUrl}
-      </span>
-            }
+      </Pill>
+      }
   />
 );
